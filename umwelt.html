@@ -273,15 +273,6 @@
             background-color: #5a6268;
         }
         
-        #homeButton {
-            background-color: #28a745;
-            color: white;
-        }
-        
-        #homeButton:hover {
-            background-color: #218838;
-        }
-        
         .feedback-container {
             margin-top: 40px;
             background-color: white;
@@ -363,18 +354,6 @@
             }
         }
         
-        .answer-label {
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background-color: #2c6fb7;
-            color: white;
-            padding: 4px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        
         /* تخصيص scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
@@ -392,17 +371,6 @@
         
         ::-webkit-scrollbar-thumb:hover {
             background: #a8a8a8;
-        }
-        
-        .selected-heading-info {
-            text-align: center;
-            color: #28a745;
-            font-weight: bold;
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #d4edda;
-            border-radius: 5px;
-            display: none;
         }
     </style>
 </head>
@@ -479,7 +447,6 @@
         
         <div class="headings-section">
             <h2>Überschriften A-J</h2>
-            <div class="selected-heading-info" id="selectedHeadingInfo"></div>
             <div class="headings-list-container">
                 <div class="headings-list" id="headingsList">
                     <!-- العناوين ستضاف بواسطة الجافاسكريبت -->
@@ -491,7 +458,6 @@
     <div class="buttons-container">
         <button id="submitButton">Abschicken</button>
         <button id="resetButton">Zurücksetzen</button>
-        <button id="homeButton">Zurück zur Startseite</button>
     </div>
     
     <div class="feedback-container" id="feedbackContainer">
@@ -580,9 +546,6 @@
             // أحداث الأزرار
             document.getElementById('submitButton').addEventListener('click', checkAnswers);
             document.getElementById('resetButton').addEventListener('click', resetSelections);
-            document.getElementById('homeButton').addEventListener('click', function() {
-                alert("Zurück zur Startseite");
-            });
         });
         
         // اختيار عنوان
@@ -599,11 +562,6 @@
             currentHeading = { letter: headingLetter, text: headingText };
             const headingElement = document.getElementById(`heading-${headingLetter}`);
             headingElement.classList.add('selected');
-            
-            // عرض رسالة للمستخدم
-            const infoElement = document.getElementById('selectedHeadingInfo');
-            infoElement.textContent = `Ausgewählt: ${headingLetter}. ${headingText} - Klicken Sie jetzt auf eine Antwort-Box`;
-            infoElement.style.display = 'block';
             
             // إضافة تظليل لصناديق الإجابة
             answerBoxes.forEach(box => {
@@ -649,9 +607,6 @@
             // إزالة التحديد الحالي
             currentHeading = null;
             
-            // إخفاء رسالة المعلومات
-            document.getElementById('selectedHeadingInfo').style.display = 'none';
-            
             // إزالة تظليل صناديق الإجابة
             answerBoxes.forEach(box => {
                 box.style.cursor = 'default';
@@ -681,7 +636,6 @@
                 // إلغاء أي تحديد حالي
                 if (currentHeading && currentHeading.letter === letter) {
                     currentHeading = null;
-                    document.getElementById('selectedHeadingInfo').style.display = 'none';
                     headingElement.classList.remove('selected');
                 }
             }
@@ -761,9 +715,6 @@
                 const headingElement = document.getElementById(`heading-${heading.letter}`);
                 headingElement.classList.remove('used', 'selected');
             });
-            
-            // إخفاء رسالة المعلومات
-            document.getElementById('selectedHeadingInfo').style.display = 'none';
             
             // إخفاء النتائج
             document.getElementById('feedbackContainer').style.display = 'none';
