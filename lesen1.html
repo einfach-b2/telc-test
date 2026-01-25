@@ -1,291 +1,45 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesen Teil 1</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-        
-        body {
-            background-color: #f2f4f7;
-            color: #333;
-            line-height: 1.5;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-        }
-        
-        .header {
-            background-color: #0056a6;
-            color: white;
-            padding: 25px 30px;
-            border-bottom: 5px solid #f8c300;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        
-        .logo span {
-            color: #f8c300;
-        }
-        
-        .exam-title {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        .exam-subtitle {
-            font-size: 18px;
-            opacity: 0.9;
-        }
-        
-        .main-content {
-            padding: 30px;
-        }
-        
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #eaeaea;
-        }
-        
-        .section-icon {
-            background-color: #0056a6;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            font-weight: bold;
-            margin-right: 15px;
-        }
-        
-        .section-title {
-            font-size: 26px;
-            color: #0056a6;
-            font-weight: 700;
-        }
-        
-        .topics-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .topic-button {
-            background-color: #f0f5ff;
-            border: 2px solid #d0ddec;
-            border-radius: 10px;
-            padding: 18px 10px;
-            font-size: 16px;
-            font-weight: 600;
-            color: #0056a6;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .topic-button:hover {
-            background-color: #e1e9ff;
-            border-color: #0056a6;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 86, 166, 0.1);
-        }
-        
-        .topic-button.active {
-            background-color: #0056a6;
-            color: white;
-            border-color: #0056a6;
-        }
-        
-        .instructions {
-            background-color: #f9fafc;
-            border-left: 5px solid #0056a6;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 25px;
-        }
-        
-        .instructions-title {
-            color: #0056a6;
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .instructions-list {
-            padding-left: 20px;
-        }
-        
-        .instructions-list li {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-        
-        .footer {
-            background-color: #f8f9fa;
-            padding: 20px 30px;
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-            border-top: 1px solid #eaeaea;
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
-            
-            .topics-container {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .topics-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .exam-title {
-                font-size: 26px;
-            }
-            
-            .section-title {
-                font-size: 22px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="header-content">
-                <div>
-                    <div class="logo">Prüfungs<span>Portal</span></div>
-                    <h1 class="exam-title">Lesen Teil 1</h1>
-                    <p class="exam-subtitle">Prüfungsvorbereitung - Leseverstehen</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="main-content">
-            <div class="section-header">
-                <div class="section-icon">L1</div>
-                <h2 class="section-title">Themen für die Prüfung</h2>
-            </div>
-            
-            <div class="topics-container" id="topicsContainer">
-                <!-- Themen werden per JavaScript geladen -->
-            </div>
-            
-            <div class="instructions">
-                <h3 class="instructions-title">📋 Prüfungsanweisungen</h3>
-                <ul class="instructions-list">
-                    <li>Wählen Sie ein Thema aus der obigen Liste, um mit der Prüfung zu beginnen</li>
-                    <li>Sie können das Thema jederzeit wechseln</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p></p>
-        </div>
-    </div>
+<script>
+    const topics = [
+        "Umwelt", "Impfung", "Kinderhandy", "Drogen", "Tanzkurs",
+        "Limonade", "Grundschule", "Insekten", "Österreich", "Jugend forscht",
+        "Sport ist Gesund", "Inseln", "In den Alpen", "In den Alpen 2", "Kartoffel",
+        "Bilder", "Licht", "Spielen", "Programmieren", "Trampoline",
+        "Benzin", "Kaffee", "Bonbons", "Geld", "Auf dem Weg",
+        "Schlafzug 1", "Schlafzug 2", "Keine Zeit", "Licht (NEUE)"
+    ];
 
-    <script>
-        // Themenliste gemäß dem Bild
-        const topics = [
-            "Umwelt", "Impfung", "Kinderhandy", "Drogen", "Tanzkurs",
-            "Limonade", "Grundschule", "Insekten", "Österreich", "Jugend forscht",
-            "Sport ist Gesund", "Inseln", "In den Alpen", "In den Alpen 2", "Kartoffel",
-            "Bilder", "Licht", "Spielen", "Programmieren", "Trampoline",
-            "Benzin", "Kaffee", "Bonbons", "Geld", "Auf dem Weg",
-            "Schlafzug 1", "Schlafzug 2", "Keine Zeit", "Licht (NEUE)"
-        ];
-        
-        // App-Zustand
-        let currentTopic = null;
-        
-        // DOM-Elemente
-        const topicsContainer = document.getElementById('topicsContainer');
-        
-        // Themen-Buttons erstellen
-        function createTopicButtons() {
-            topics.forEach(topic => {
-                const button = document.createElement('button');
-                button.className = 'topic-button';
-                button.textContent = topic;
-                button.dataset.topic = topic;
-                
-                button.addEventListener('click', () => {
-                    // Aktiven Zustand entfernen
-                    document.querySelectorAll('.topic-button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    
-                    // Aktiven Zustand setzen
-                    button.classList.add('active');
-                    currentTopic = topic;
-                    
-                    // Thema im Konsole anzeigen
-                    console.log(`Ausgewähltes Thema: ${topic}`);
-                });
-                
-                topicsContainer.appendChild(button);
+    const topicsContainer = document.getElementById('topicsContainer');
+
+    function topicToFileName(topic) {
+        return topic
+            .toLowerCase()
+            .replace(/ä/g, "ae")
+            .replace(/ö/g, "oe")
+            .replace(/ü/g, "ue")
+            .replace(/ß/g, "ss")
+            .replace(/\s+/g, "")
+            .replace(/[()]/g, "") + ".html";
+    }
+
+    function createTopicButtons() {
+        topics.forEach(topic => {
+            const button = document.createElement('button');
+            button.className = 'topic-button';
+            button.textContent = topic;
+
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.topic-button')
+                    .forEach(btn => btn.classList.remove('active'));
+
+                button.classList.add('active');
+
+                const fileName = topicToFileName(topic);
+                window.location.href = fileName;
             });
-        }
-        
-        // Initialisierung
-        function init() {
-            createTopicButtons();
-            
-            // Erstes Thema standardmäßig auswählen
-            if (topics.length > 0) {
-                const firstTopicButton = topicsContainer.querySelector('.topic-button');
-                firstTopicButton.click();
-            }
-        }
-        
-        // App starten
-        document.addEventListener('DOMContentLoaded', init);
-    </script>
-</body>
-</html>
+
+            topicsContainer.appendChild(button);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', createTopicButtons);
+</script>
